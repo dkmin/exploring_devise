@@ -1,10 +1,10 @@
 {
-    "plugins"       : ["richquotes", "auto-cover"]
-    ,"pluginsConfig":
-    {
-        "richquotes" :
-        {
-            "todos" : true /*false by default*/
+    "plugins": [
+        "richquotes"
+    ],
+    "pluginsConfig": {
+        "richquotes": {
+            "todos": true
         }
     }
 }
