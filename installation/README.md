@@ -70,7 +70,14 @@ $navbar-default-color: $light-orange;
 @import "bootstrap";
 ```
 
-때로는 명시적으로 `Bootstrap`의 각 요소들을 지정할 경우도 있다. 이 때는 아래와 같이 커맨드라인 쉘 명령을 실행하면 모든 요소를 포함하는 `bootstrap-custom.scss` 파일이 생성되는데, 이 파일을 열어 불필요한 요소는 코멘트 처리할 수도 있다. 이 때는 아래와 같이 `application.css.scss` 파일에 선언해 놓은 `@import 'bootstrap'`을 `@import 'bootstrap-custom'`으로 변경해 주어야 한다. `bootstrap-custom.scss` 파일의 내용은 아래와 같다.
+때로는 명시적으로 `Bootstrap`의 각 요소들을 지정할 경우도 있다. 이 때는 아래와 같이 커맨드라인 쉘 명령을 실행하면 모든 요소를 포함하는 `bootstrap-custom.scss` 파일이 생성되는데, 이 파일을 열어 불필요한 요소는 코멘트 처리할 수도 있다.
+
+```bash
+cp $(bundle show bootstrap-sass)/vendor/assets/stylesheets/bootstrap.scss \
+ app/assets/stylesheets/bootstrap-custom.scss
+```
+
+이 때는 아래와 같이 `application.css.scss` 파일에 선언해 놓은 `@import 'bootstrap'`을 `@import 'bootstrap-custom'`으로 변경해 주어야 한다. 생성된 `bootstrap-custom.scss` 파일의 내용은 아래와 같다.
 
 ```css
 // Core variables and mixins
