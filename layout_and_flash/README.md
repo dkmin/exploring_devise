@@ -106,3 +106,39 @@ end
 
 ![](http://i1373.photobucket.com/albums/ag392/rorlab/Photobucket%20Desktop%20-%20RORLAB/auth_blog/2014-05-28_16-06-20_zpsa1b4765d.png)
 
+다음은 사용자의 로그인 상태를 상단 메뉴바로 옮겨 보자.
+
+```html
+<div class="navbar-collapse collapse">
+  <ul class="nav navbar-nav">
+    <li class="active"><%= link_to "Home", root_path %></li>
+    <li><%= link_to "Posts", posts_path %></li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+    <% if user_signed_in? %>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "My Profile", edit_user_registration_path %></li>
+          <li><%= link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" } %></li>
+        </ul>
+      </li>
+    <% else %>
+      <li><%= link_to "Sign in", new_user_session_path %></li>
+      <li><%= link_to "Sign up", new_user_registration_path %></li>
+    <% end %>
+  </ul>
+</div>
+```
+
+브라우저에서 변경내용을 확인하면 아래와 같다.
+
+![](http://i1373.photobucket.com/albums/ag392/rorlab/Photobucket%20Desktop%20-%20RORLAB/auth_blog/2014-05-28_19-20-40_zpsed335edb.png)
+
+`Home`(1번)을 클릭하면 루트로 이동하고  `Posts`(2번)을 클릭하면 게시물을 작성하는 페이지로 이동한다(다음 섹션에서 작성할 예정이며 여기서는 링크만 만들어 두기로 한다). 그리고 오른쪽에는 `Sign in`(3번)과 `Sign out`(4번) 메뉴를 두고 클릭하면 각각 `로그인`, `회원가입`하는 페이지로 이동하도록 했다.
+
+로그인하면 아래와 같이 로그인 메뉴항목(2번)이 변경된다.
+
+![](http://i1373.photobucket.com/albums/ag392/rorlab/Photobucket%20Desktop%20-%20RORLAB/auth_blog/2014-05-28_19-26-55_zps1303c20a.png)
+
+이제 메뉴바가 어느 정도 정리가 되었으니 다음 섹션으로 넘어 가도록 하자.

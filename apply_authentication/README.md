@@ -111,6 +111,57 @@ end
 
 ## Post 리소스에 대한 접근제한하기
 
+우선, 로그인 하지 않은 상태에서는 `posts` 컨트롤러의 `index`, `show` 액션에 대한만 접근은 할 수 있도록 하고, 로그인 후에 비로소 `new`, `edit` 액션에도 접근할 수 있도록 하는 권한 설정을 만들어 보자.
 
+이를 위해서 `app/controllers/posts_controller.rb` 컨트롤러 클래스 파일을 열어서 상단에 `before_action :authenticate_user!`를 추가해 준다. 그리고 `:only` 옵션을 이용해서 인증이 필요한 액션들의 심볼명을 배열로 만들어 준다.
 
+```ruby
+before_action :authenticate_user!, only: [ :new, :edit, :create, :update, :destroy ]
+```
+
+따라서 `index`, `show` 액션은 인증이 필요없게 되는 것이다.
+
+이제 브라우저에서 로그인하지 않는 상태에서 `Posts` 메뉴를 클릭한다.
+
+![](http://i1373.photobucket.com/albums/ag392/rorlab/Photobucket%20Desktop%20-%20RORLAB/auth_blog/2014-05-28_19-33-59_zpsd9d2a758.png)
+
+이 때 `Posts` 페이지에서 `News post`(1번) 링크를 클릭하면 아래와 같이 로그인 페이지로 이동한 후, 인증 실패에 대한 `flash` 메시지(1번)를 상단에 보여 주게 된다.
+
+![](http://i1373.photobucket.com/albums/ag392/rorlab/Photobucket%20Desktop%20-%20RORLAB/auth_blog/2014-05-28_19-35-11_zpsbbc758f8.png)
+
+과연 우리가 의도했던 데로 처리되었다. 로그인 후에 이와 같은 동작을 반복하면 이 때는 인증 실패에 대한 메시지가 나타나지 않고 바로 글을 입력할 수 있는 폼 페이지로 이동하게 된다.
+
+![](http://i1373.photobucket.com/albums/ag392/rorlab/Photobucket%20Desktop%20-%20RORLAB/auth_blog/2014-05-28_19-42-22_zpsfbc0aa40.png)
+
+로그인 후에는 1번 위치에 로그인된 사용자의 이메일 주소가 나타난다. 데이터를 입력하고 `Create Post` 링크 버튼(2번)을 클릭하면 데이터가 저장된 후 `show` 액션으로 리디렉트된다.
+
+![](http://i1373.photobucket.com/albums/ag392/rorlab/Photobucket%20Desktop%20-%20RORLAB/auth_blog/2014-05-28_19-45-45_zps26e55199.png)
+
+그러나 `flash` 메시지가 중복(1번)되어 나타나고 2번의 `User` 항목에는 알 수 없는 숫자들이 보인다. 이것은 `user` 객체의 `id` 값을 나타내는데 사용자들에게는 도움이 되지 못하는 정보이며 실제 사용자의 이메일 주소를 보이도록 하면 도움이 될 것 같다.
+
+이 두가지 사항은 아래와 같이 수정한다.
+
+```html
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user.present? ? @psot.user.email : "n/a" %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-default' %>
+<%= link_to 'Back', posts_path, class: 'btn btn-default' %>
+```
+
+다시 해당 글을 수정한 후 저장하면 아래와 같이 깔끔하게 보이게 된다.
+
+![](http://i1373.photobucket.com/albums/ag392/rorlab/Photobucket%20Desktop%20-%20RORLAB/auth_blog/2014-05-28_20-02-26_zps577b0438.png)
 
