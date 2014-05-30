@@ -6,4 +6,6 @@
 * [어플리케이션 레이아웃 작업](layout_and_flash/README.md)
 * [사용자 인증 적용하기](apply_authentication/README.md)
 * [Bootstrap 클래스로 Styling 업데이트하기](restyling_with_bootstrap_class/README.md)
+* [사용자 권한 설정하기](user_authorization/README.md)
+* [허로쿠에 배포하기](deploy_to_heroku/README.md)
 

@@ -207,12 +207,13 @@ end
 
 ![](http://i1373.photobucket.com/albums/ag392/rorlab/Photobucket%20Desktop%20-%20RORLAB/auth_blog/2014-05-29_10-34-23_zpse1069426.png)
 
+
 ## Devise 뷰
 
 
-### sign up
+### > Sign Up
 
-`app/views/devise/registrations/new.html.erb`
+`app/views/devise/registrations/new.html.erb` 파일을 열고 아래와 같이 수정한다.
 
 ```html
 <h2>Sign up</h2>
@@ -235,12 +236,14 @@ end
 <%= render "devise/shared/links" %>
 ```
 
-![](http://i1373.photobucket.com/albums/ag392/rorlab/Photobucket%20Desktop%20-%20RORLAB/2014-05-29_11-46-03_zpsc7cf258e.png)
+![](http://i1373.photobucket.com/albums/ag392/rorlab/Photobucket%20Desktop%20-%20RORLAB/auth_blog/2014-05-29_11-46-03_zpsc7cf258e.png)
 
 
-### sign in
 
-`app/views/devise/sessions/new.html.erb`
+
+### > Sign In
+
+`app/views/devise/sessions/new.html.erb` 파일을 열고 아래와 같이 수정한다.
 
 ```html
 <h2>Sign in</h2>
@@ -263,9 +266,9 @@ end
 
 ![](http://i1373.photobucket.com/albums/ag392/rorlab/Photobucket%20Desktop%20-%20RORLAB/auth_blog/2014-05-29_11-49-18_zps7546b970.png)
 
-### edit profile
+### Edit Profile
 
-`app/views/devise/registrations/edit.html.erb`
+`app/views/devise/registrations/edit.html.erb` 파일을 열고 아래와 같이 수정한다.
 
 ```html
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
@@ -305,7 +308,7 @@ end
 
 ![](http://i1373.photobucket.com/albums/ag392/rorlab/Photobucket%20Desktop%20-%20RORLAB/auth_blog/2014-05-29_11-54-42_zps21a5a5a2.png)
 
-### welcome page (app/views/welcome/index.html.erb)
+### > Welcome Page (app/views/welcome/index.html.erb)
 
 ```html
 <center>
